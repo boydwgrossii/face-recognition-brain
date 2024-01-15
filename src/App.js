@@ -132,7 +132,7 @@ class App extends Component {
         }
         this.displayFaceBox(this.calculateFaceLocation(response))
       })
-      .catch(err => console.log(err));
+      .catch(error => console.log('error image url: ', error));
   }
 
   onRouteChange = (route) => {
