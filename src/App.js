@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import Particles from 'react-particles-js';
 import ParticlesBg from 'particles-bg'
-import Clarifai from 'clarifai';
+// import Clarifai from 'clarifai';
 import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 import Navigation from './components/Navigation/Navigation';
 import Signin from './components/Signin/Signin';
@@ -12,9 +12,9 @@ import Rank from './components/Rank/Rank';
 import './App.css';
 
 //You must add your own API key here from Clarifai.
-const app = new Clarifai.App({
- apiKey: '48a6e567ad9440e890005d74aba1a671'
-});
+// const app = new Clarifai.App({
+//  apiKey: '48a6e567ad9440e890005d74aba1a671'
+// });
 
 const returnClarifaiRequestOptions = (imageUrl) => {
     // Your PAT (Personal Access Token) can be found in the portal under Authentification
@@ -25,7 +25,7 @@ const returnClarifaiRequestOptions = (imageUrl) => {
     const APP_ID = 'test';
     // Change these to whatever model and image URL you want to use
     const MODEL_ID = 'face-detection'; 
-    const IMAGE_URL = 'imageUrl';
+    const IMAGE_URL = imageUrl;
 
     const raw = JSON.stringify({
       "user_app_id": {
