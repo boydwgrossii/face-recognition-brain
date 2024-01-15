@@ -13,8 +13,47 @@ import './App.css';
 
 //You must add your own API key here from Clarifai.
 const app = new Clarifai.App({
- apiKey: 'YOUR API KEY HERE'
+ apiKey: '48a6e567ad9440e890005d74aba1a671'
 });
+
+const returnClarifaiRequestOptions = (imageUrl) => {
+    // Your PAT (Personal Access Token) can be found in the portal under Authentification
+    const PAT = 'e6d40c13b96640aeaf443dbf45b50419';
+    // Specify the correct user_id/app_id pairings
+    // Since you're making inferences outside your app's scope
+    const USER_ID = 'l45kbs34os7l';       
+    const APP_ID = 'test';
+    // Change these to whatever model and image URL you want to use
+    const MODEL_ID = 'face-detection';  
+    const IMAGE_URL = 'imageUrl';
+
+    const raw = JSON.stringify({
+      "user_app_id": {
+          "user_id": USER_ID,
+          "app_id": APP_ID
+      },
+      "inputs": [
+          {
+              "data": {
+                  "image": {
+                      "url": IMAGE_URL
+                  }
+              }
+          }
+      ]
+  });
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+        'Accept': 'application/json',
+        'Authorization': 'Key ' + PAT
+    },
+    body: raw
+};
+return requestOptions
+}
+
+
 
 // No Longer need this. Updated to particles-bg
 // const particlesOptions = {
@@ -36,7 +75,7 @@ class App extends Component {
       input: '',
       imageUrl: '',
       box: {},
-      route: 'signin',
+      route: 'home',
       isSignedIn: false,
       user: {
         id: '',
@@ -87,8 +126,10 @@ class App extends Component {
     // for the Face Detect Mode: https://www.clarifai.com/models/face-detection
     // If that isn't working, then that means you will have to wait until their servers are back up. 
 
-    app.models.predict('face-detection', this.state.input)
-      .then(response => {
+    // app.models.predict('face-detection', this.state.input)
+    fetch("https://api.clarifai.com/v2/models/" + 'face-detection' + "/outputs", returnClarifaiRequestOptions(this.state.input))
+    .then(response => response.json())
+    .then(response => {
         console.log('hi', response)
         if (response) {
           fetch('http://localhost:3000/image', {
@@ -122,7 +163,7 @@ class App extends Component {
     const { isSignedIn, imageUrl, route, box } = this.state;
     return (
       <div className="App">
-        <ParticlesBg type="fountain" bg={true} />
+        <ParticlesBg color='#ffffff' type="cobweb" bg={true} />
         <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} />
         { route === 'home'
           ? <div>
