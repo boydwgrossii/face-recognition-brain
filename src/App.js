@@ -24,7 +24,7 @@ const returnClarifaiRequestOptions = (imageUrl) => {
     const USER_ID = 'l45kbs34os7l';       
     const APP_ID = 'test';
     // Change these to whatever model and image URL you want to use
-    const MODEL_ID = 'face-detection';  
+    const MODEL_ID = 'face-detection'; 
     const IMAGE_URL = 'imageUrl';
 
     const raw = JSON.stringify({
@@ -52,21 +52,6 @@ const returnClarifaiRequestOptions = (imageUrl) => {
 };
 return requestOptions
 }
-
-
-
-// No Longer need this. Updated to particles-bg
-// const particlesOptions = {
-//   particles: {
-//     number: {
-//       value: 30,
-//       density: {
-//         enable: true,
-//         value_area: 800
-//       }
-//     }
-//   }
-// }
 
 class App extends Component {
   constructor() {
@@ -128,8 +113,8 @@ class App extends Component {
 
     // app.models.predict('face-detection', this.state.input)
     fetch("https://api.clarifai.com/v2/models/" + 'face-detection' + "/outputs", returnClarifaiRequestOptions(this.state.input))
-    .then(response => response.json())
-    .then(response => {
+      .then(response => response.json())
+      .then(response => {
         console.log('hi', response)
         if (response) {
           fetch('http://localhost:3000/image', {
