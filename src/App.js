@@ -60,7 +60,7 @@ class App extends Component {
       input: '',
       imageUrl: '',
       box: {},
-      route: 'home',
+      route: 'signin',
       isSignedIn: false,
       user: {
         id: '',
@@ -150,8 +150,10 @@ class App extends Component {
       <div className="App">
         <ParticlesBg color='#ffffff' type="cobweb" bg={true} />
         <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} />
-        { route === 'home'
-          ? <div>
+        { this.state.route === 'signin'
+          ? <Signin />
+          :
+          <div>
               <Logo />
               <Rank
                 name={this.state.user.name}
@@ -161,13 +163,8 @@ class App extends Component {
                 onInputChange={this.onInputChange}
                 onButtonSubmit={this.onButtonSubmit}
               />
-              <FaceRecognition box={box} imageUrl={imageUrl} />
+              <FaceRecognition box={this.state.box} imageUrl={this.state.imageUrl} />
             </div>
-          : (
-             route === 'signin'
-             ? <Signin loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
-             : <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
-            )
         }
       </div>
     );
