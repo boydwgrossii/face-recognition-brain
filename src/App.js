@@ -108,6 +108,7 @@ class App extends Component {
     fetch("https://api.clarifai.com/v2/models/" + 'face-detection' + "/outputs", returnClarifaiRequestOptions(this.state.input))
       .then(response => response.json())
       .then(response => {
+
         this.displayFaceBox(this.calculateFaceLocation(response))
       })
       .catch(error => console.log('error calling api: ', error));
