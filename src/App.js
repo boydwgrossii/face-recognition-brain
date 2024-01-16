@@ -11,11 +11,6 @@ import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank';
 import './App.css';
 
-//You must add your own API key here from Clarifai.
-// const app = new Clarifai.App({
-//  apiKey: '48a6e567ad9440e890005d74aba1a671'
-// });
-
 const returnClarifaiRequestOptions = (imageUrl) => {
     // Your PAT (Personal Access Token) can be found in the portal under Authentification
     const PAT = 'e6d40c13b96640aeaf443dbf45b50419';
