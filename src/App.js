@@ -135,12 +135,16 @@ class App extends Component {
       .catch(error => console.log('error calling api: ', error));
   }
 
+  // onRouteChange = (route) => {
+  //   if (route === 'signout') {
+  //     this.setState({isSignedIn: false})
+  //   } else if (route === 'home') {
+  //     this.setState({isSignedIn: true})
+  //   }
+  //   this.setState({route: route});
+  // }
+
   onRouteChange = (route) => {
-    if (route === 'signout') {
-      this.setState({isSignedIn: false})
-    } else if (route === 'home') {
-      this.setState({isSignedIn: true})
-    }
     this.setState({route: route});
   }
 
@@ -149,11 +153,9 @@ class App extends Component {
     return (
       <div className="App">
         <ParticlesBg color='#ffffff' type="cobweb" bg={true} />
-        <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} />
-        { this.state.route === 'signin'
-          ? <Signin />
-          :
-          <div>
+        <Navigation onRouteChange={this.onRouteChange} />
+        { this.state.route === 'home'
+          ? <div>
               <Logo />
               <Rank
                 name={this.state.user.name}
@@ -165,7 +167,12 @@ class App extends Component {
               />
               <FaceRecognition box={this.state.box} imageUrl={this.state.imageUrl} />
             </div>
-        }
+          : (
+            this.state.route === 'signin'
+            ? <Signin onRouteChange={this.onRouteChange}/>
+            : <Register onRouteChange={this.onRouteChange}/>
+          )
+  }
       </div>
     );
   }
