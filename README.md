@@ -10,3 +10,8 @@ You can grab Clarifai API key [here](https://www.clarifai.com/)
 
 *visist https://zerotomastery.io/ for more*
 
+To the student who comes across this:  This is the final version of the front end project.  This isn't just for you to copy
+and move on.  It's my hope that this will help you through the project and see how it works.  In this version, we remove
+the need to rely on the install of Clarifai and write what it needs to do instead.
+
+Study well and have fun!
